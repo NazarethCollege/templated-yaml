@@ -69,7 +69,7 @@ class TYamlResolver(object):
         yaml_source = None
 
         with open(abs_path, 'r') as stream:
-            yaml_source = yaml.load(stream)
+            yaml_source = yaml.load(stream, Loader=yaml.FullLoader)
 
         resolver = TYamlResolver(yaml_source, **kwargs)
         resolver._original_file = abs_path
@@ -78,7 +78,7 @@ class TYamlResolver(object):
 
     @classmethod
     def new_from_string(cls, content, **kwargs):
-        resolver = TYamlResolver(yaml.load(content), **kwargs)
+        resolver = TYamlResolver(yaml.load(content, Loader=yaml.FullLoader), **kwargs)
         resolver._original_file = None
 
         return resolver

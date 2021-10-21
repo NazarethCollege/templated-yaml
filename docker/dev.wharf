@@ -1,6 +1,6 @@
 ---
 dockerfile: |
-  FROM phusion/baseimage:0.9.19
+  FROM nazarethcollege/baseimage:2020.11.05 as base  
 
   RUN apt-get update && apt-get install -y \
       sudo \

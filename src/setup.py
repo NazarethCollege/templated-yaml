@@ -71,7 +71,7 @@ setup(
     # https://packaging.python.org/en/latest/requirements.html
     install_requires=[
         'click<6.7',
-        'pyyaml<3.13',
+        'pyyaml<5.3.1',
         'jinja2<2.9',
     ],
 

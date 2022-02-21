@@ -70,9 +70,9 @@ setup(
     # requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
     install_requires=[
-        'click<6.7',
-        'pyyaml<5.3.1',
-        'jinja2<2.9',
+        'click<8',
+        'pyyaml~=6.0.0',
+        'jinja2>=3.0.0',
     ],
 
     # List additional groups of dependencies here (e.g. development

@@ -22,7 +22,7 @@ def config_path(folder, file):
 def run_test(test_name, globals=None):
     input, output = get_test_paths(test_name)
     processed_input = { k:v for k,v in tapi.render_from_path(input, globals=globals).items() if k != 'parent' }
-    expected_output = yaml.load(get_contents(output))
+    expected_output = yaml.safe_load(get_contents(output))
 
     assert processed_input == expected_output
 
@@ -74,7 +74,7 @@ def test_sphinx_examples():
     run_test('tyaml.sphinx.parent')
     run_test('tyaml.sphinx.multiple_parent')
     run_test('tyaml.sphinx.parent-namespace')
-    
+
 
 def test_context_overlay():
     result = tapi.render_from_string("name: wrong", context={ 'name': 'right'})
@@ -88,7 +88,7 @@ def test_globals():
 
     result = tapi.render_from_string("global: '{{ global_func() }}'", globals={ 'global_func': global_func })
     assert result['global'] == 'globaled'
-    
+
 
 def test_list_at_root():
     with pytest.raises(ContextInitializationError):

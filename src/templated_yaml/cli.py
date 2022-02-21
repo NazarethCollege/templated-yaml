@@ -12,7 +12,7 @@ def cli(ctx):
 @click.argument('path', required=False, type=click.Path(exists=True))
 @click.option('--context', default="---")
 def render(path, context):
-    context = yaml.load(context)
+    context = yaml.safe_load(context)
 
     if path:
         click.echo(yaml.dump(api.render_from_path(path, context), default_flow_style=False))

@@ -16,8 +16,8 @@ def run_command(*args, **kwargs):
 
 def test_render_from_args():
     input, output = get_test_paths('tyaml.variable-substitution')
-    processed_cli_output = yaml.load(run_command('render', input).stdout)
-    expected_output = yaml.load(get_contents(output))
+    processed_cli_output = yaml.safe_load(run_command('render', input).stdout)
+    expected_output = yaml.safe_load(get_contents(output))
 
     assert processed_cli_output == expected_output
 
@@ -26,8 +26,8 @@ def test_render_from_stdin():
     input, output = get_test_paths('tyaml.variable-substitution')
 
 
-    processed_cli_output = yaml.load(run_command('render', stdin_content=yaml.dump(yaml.load(open(input, 'r')), default_flow_style=False)).stdout)
-    expected_output = yaml.load(get_contents(output))
+    processed_cli_output = yaml.safe_load(run_command('render', stdin_content=yaml.dump(yaml.safe_load(open(input, 'r')), default_flow_style=False)).stdout)
+    expected_output = yaml.safe_load(get_contents(output))
 
     assert processed_cli_output == expected_output
 

@@ -1,0 +1,8 @@
+---
+arrays:
+  - first
+  - second
+  - third: nested
+root_key: root value
+nested:
+  escaped: e'scape me

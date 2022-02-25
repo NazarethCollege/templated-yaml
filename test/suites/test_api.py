@@ -26,6 +26,13 @@ def run_test(test_name, globals=None):
 
     assert processed_input == expected_output
 
+def run_flatten_test(test_name):
+    input, output = get_test_paths(test_name)
+    processed_input = tapi.to_env(tapi.flatten(tapi.render_from_path(input)))
+    expected_output = get_contents(output)
+
+    assert processed_input == expected_output
+
 
 def test_simple_render():
     run_test('tyaml.variable-substitution')
@@ -113,3 +120,9 @@ def test_variable_chaining_with_globals():
         return { 'val': 1 }
 
     run_test('tyaml.variable_chaining_with_globals', globals={ 'get_a': get_a })
+
+def test_simple_flatten():
+    run_flatten_test('flatten.simple')
+
+def test_complex_flatten():
+    run_flatten_test('flatten.complex')

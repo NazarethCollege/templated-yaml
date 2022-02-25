@@ -1,0 +1,5 @@
+ARRAYS_0='first'
+ARRAYS_1='second'
+ARRAYS_2_THIRD='nested'
+ROOT_KEY='root value'
+NESTED_ESCAPED='e\'scape me'

@@ -1,0 +1,5 @@
+name:
+  first: John
+  last: Smith
+
+badge: "{{ name.last }}, {{ name.first }}"

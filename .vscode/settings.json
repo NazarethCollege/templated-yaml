@@ -1,0 +1,12 @@
+{
+    "python.autoComplete.extraPaths": [
+        "${workspaceRoot}/dev/venv/lib/python3.5/site-packages"
+    ],
+    "python.linting.pylintArgs": [
+        "--init-hook",
+        "from pylint.config import find_pylintrc; import os, sys; sys.path.append(os.path.join(os.path.dirname(find_pylintrc()), \"dev/venv/lib/python3.5/site-packages\"))"
+    ],
+    "python.analysis.extraPaths": [
+        "${workspaceRoot}/dev/venv/lib/python3.5/site-packages"
+    ]
+}

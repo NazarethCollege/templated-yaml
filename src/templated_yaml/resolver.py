@@ -1,10 +1,13 @@
-import yaml, collections, os
+import yaml, os
 from jinja2 import Template, Environment, exceptions, StrictUndefined
 from .context import Context
 import ast, copy
 from .meta import get_referenced_template_vars
 from collections import namedtuple
-
+try:
+    from collections import Mapping
+except ImportError:
+    from collections.abc import Mapping
 
 class DependencyGraph(object):
 
@@ -110,7 +113,7 @@ class TYamlResolver(object):
 
                 yield node, key_chain, item
 
-                if isinstance(item, collections.Mapping) or isinstance(item, list):
+                if isinstance(item, Mapping) or isinstance(item, list):
                     for i in walk_dict(item, key_chain): yield i
 
         pre_processors = []

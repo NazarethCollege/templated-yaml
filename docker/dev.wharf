@@ -1,6 +1,6 @@
 ---
 dockerfile: |
-  FROM nazarethcollege/baseimage:2020.11.05 as base  
+  FROM nazarethcollege/baseimage:2022.10.25 as base  
 
   RUN apt-get update && apt-get install -y \
       sudo \

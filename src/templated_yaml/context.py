@@ -1,5 +1,7 @@
-import collections
-
+try:
+    from collections import Mapping
+except ImportError:
+    from collections.abc import Mapping
 
 class ContextInitializationError(Exception):
     pass
@@ -10,7 +12,7 @@ class Context(object):
         self._data = data or {}
         self._parent = parent
 
-        if not isinstance(self._data, collections.Mapping):
+        if not isinstance(self._data, Mapping):
             raise ContextInitializationError("Root configuration data must be a mapping, structures like lists are not allowed.")
 
     @property
@@ -23,7 +25,7 @@ class Context(object):
 
     @property
     def parent(self):
-        return self._parent 
+        return self._parent
 
     def add_parent(self, parent_context):
         if not self.parent:
@@ -32,7 +34,7 @@ class Context(object):
         self.parent.overlay(parent_context.data)
 
     def add(self, additional_context):
-        if not isinstance(additional_context, collections.Mapping):
+        if not isinstance(additional_context, Mapping):
             raise ContextInitializationError("Root configuration data must be a mapping, structures like lists are not allowed.")
 
         self._data = {**additional_context, **self._data}
@@ -48,7 +50,7 @@ class Context(object):
         del node[key_chain[-1]]
 
     def overlay(self, additional_context):
-        if not isinstance(additional_context, collections.Mapping):
+        if not isinstance(additional_context, Mapping):
             raise ContextInitializationError("Root configuration data must be a mapping, structures like lists are not allowed.")
 
         self._data = {**self._data, **additional_context}
